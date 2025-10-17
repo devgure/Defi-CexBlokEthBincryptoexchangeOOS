@@ -1,0 +1,41 @@
+---
+- name: Deploy Sunny Platform to VPS
+  hosts: sunny_servers
+  become: yes
+
+  tasks:
+    - name: Update packages
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        state: present
+
+    - name: Copy docker-compose.yml
+      copy:
+        src: docker-compose.yml
+        dest: /opt/sunny/
+
+    - name: Start services
+      command: docker-compose up -d
+      args:
+        chdir: /opt/sunny/
+
+    - name: Configure Nginx reverse proxy
+      template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/sites-available/sunny
+      notify: reload nginx
+
+  handlers:
+    - name: reload nginx
+      service:
+        name: nginx
+        state: reloaded

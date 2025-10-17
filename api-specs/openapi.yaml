@@ -1,0 +1,84 @@
+openapi: 3.0.3
+info:
+  title: Sunny Platform API
+  version: 1.0.0
+  description: API for Sunny CEX + DeFi platform
+
+servers:
+  - url: http://localhost:3000/api
+
+paths:
+  /markets:
+    get:
+      summary: Get market data
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    symbol:
+                      type: string
+                    price:
+                      type: number
+
+  /orders:
+    post:
+      summary: Place an order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                symbol:
+                  type: string
+                side:
+                  type: string
+                  enum: [buy, sell]
+                quantity:
+                  type: number
+                price:
+                  type: number
+      responses:
+        '201':
+          description: Order placed
+
+  /payments/charge:
+    post:
+      summary: Process payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                currency:
+                  type: string
+      responses:
+        '200':
+          description: Payment processed
+
+components:
+  schemas:
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        symbol:
+          type: string
+        side:
+          type: string
+        quantity:
+          type: number
+        price:
+          type: number
