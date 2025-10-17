@@ -1,6 +1,6 @@
 
 
-
+14
 
 
 
@@ -162,6 +162,33 @@ Fiat On-ramp	Debit/credit card + bank account payment gateway
 Wallet	Multi-currency, custodial & non-custodial options
 Security	KYC/AML, MFA, fraud detection
 Governance	Token-based on-chain voting
+
+
+
+
+Blockchain: Solidity, Go (for blockchain core), Tendermint or Cosmos SDK for PoS chain.
+Backend: Node.js / Python for APIs and business logic.
+Backend APIs,"Node.js (NestJS), Python (ML fraud detection)"
+CEX Backend/APIs	Node.js (for asynchronous I/O) or Python/Rust (for high-speed matching engine) 
+on a Microservices Architecture	Ensures scalability, high throughput, and fault tolerance.
+Frontend: React.js or Vue.js for UI./ux
+Frontend,"React.js + TypeScript, Web3Modal"
+Database: MongoDB for off-chain data (user profiles, analytics).
+In-Memory Cache (e.g., Redis) for the matching engine
+Smart Contracts:  Written in Solidity with OpenZeppelin libraries.
+Smart Contracts	Solidity with secure, audited libraries (e.g., OpenZeppelin) Industry standard for EVM compatibility and DeFi primitives.
+Payment Integration: REST APIs, Webhooks with payment providers.
+Wallet,"Web3.js, ethers.js, WalletConnect v2"
+Security: Use hardware security modules (HSM) for key management and transaction signing.
+Example Workflow: Buying Crypto via Debit Card on Sunny
+User logs in and links bank account or credit/debit card.
+Selects cryptocurrency to purchase and fiat amount.
+KYC and AML checks run automatically.
+Payment gateway processes transaction (e.g., via Simplex).
+Once payment is approved, crypto tokens are credited instantly to the user’s Sunny wallet.
+User can immediately trade on Sunny DEX or use tokens as collateral for loans.
+
+
 
 
 //////////////////////
